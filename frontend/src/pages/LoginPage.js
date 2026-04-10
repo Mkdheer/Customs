@@ -29,16 +29,20 @@ function LoginPage() {
     <div className="auth-container">
 
       <div className="auth-left">
-        <div className="brand">
-          <div className="brand-logo">C</div>
-          <h1 className="brand-name">Customs</h1>
-          <p className="brand-tagline">Design It. Build It. Wear It.</p>
-        </div>
-        <p className="brand-desc">
-          Your one-stop platform for made-to-order clothing and footwear.
-          Connect with skilled local tailors and get clothes that fit perfectly.
-        </p>
-      </div>
+  <div className="auth-overlay">
+  <div className="brand">
+  <div className="brand-logo-row">
+    <div className="brand-logo">C</div>
+    <span className="brand-logo-text">ustoms</span>
+  </div>
+  <p className="brand-tagline">Design It. Build It. Wear It.</p>
+</div>
+    <p className="brand-desc">
+      Your one-stop platform for made-to-order clothing and footwear.
+      Connect with skilled local tailors and get clothes that fit perfectly.
+    </p>
+  </div>
+</div>
 
       <div className="auth-right">
         <div className="auth-card">

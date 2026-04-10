@@ -36,12 +36,20 @@ function SignupPage() {
   return (
     <div className="auth-container">
 
-     <div className="auth-left">
-  <img 
-    src={require('../assets/auth-illustration.svg').default} 
-    alt="Customs illustration"
-    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-  />
+<div className="auth-left">
+<div className="auth-overlay">
+  <div className="brand">
+  <div className="brand-logo-row">
+    <div className="brand-logo">C</div>
+    <span className="brand-logo-text">ustoms</span>
+  </div>
+  <p className="brand-tagline">Design It. Build It. Wear It.</p>
+</div>
+    <p className="brand-desc">
+      Your one-stop platform for made-to-order clothing and footwear.
+      Connect with skilled local tailors and get clothes that fit perfectly.
+    </p>
+  </div>
 </div>
 
       <div className="auth-right">
