@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './AuthPages.css';
+import axios from 'axios';
 
 function LoginPage() {
   const navigate = useNavigate();
+  const[loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -14,15 +16,49 @@ function LoginPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
       setError('Please fill in all fields');
       return;
     }
-    // TODO: connect to Spring Boot API
-    console.log('Logging in with', formData);
-    navigate('/home');
+    
+    try{
+      setLoading(true);
+      const response =  await axios.post(
+        'http://localhost:8080/api/auth/login',
+        formData,
+        {
+          headers:{
+           'Content-Type' : "application/json"
+          }
+        }
+      );
+
+      console.log(response);
+      const data = response.data;
+      if(data.success == true){
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate('/home');
+      }else{
+        setError(data.message);
+      }
+    }catch(err){
+        if (err.response) 
+          {
+        setError(err.response.data.message || 'Invalid credentials');
+      } else {
+        setError('Server not responding');
+      }
+    } 
+    finally {
+      setLoading(false);
+    }
+      
+
+    // // TODO: connect to Spring Boot API
+    // console.log('Logging in with', formData);
+    // navigate('/home');
   };
 
   return (
